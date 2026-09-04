@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.mana.ecosystem.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.mana.ecosystem.app"
+        minSdk 24
+        targetSdk 34
+        versionCode 100
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Multi-language locales support (FA, EN, AR, FR, ES, DE, RU, ZH, HI, JA)
+        resourceConfigurations += ['fa', 'en', 'ar', 'fr', 'es', 'de', 'ru', 'zh', 'hi', 'ja']
+    }
+
+    signingConfigs {
+        release {
+            // Can be configured via environment variables or keystore file
+            storeFile file(System.getenv("KEYSTORE_PATH") ?: "release-key.jks")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: "mana123456"
+            keyAlias System.getenv("KEY_ALIAS") ?: "mana"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "mana123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    bundle {
+        language {
+            enableSplit = false // Include all languages in AAB for offline switching
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.webkit:webkit:1.10.0'
+    implementation 'com.google.android.material:material:1.11.0'
+    
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+apply from: 'capacitor.build.gradle'

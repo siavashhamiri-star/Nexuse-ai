@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: #030712;
+  color: #f1f5f9;
+  font-family: var(--font-sans);
+  overflow-y: auto;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom scrollbar for beautiful premium UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* 3D Depth Glassmorphism and Neon Glow Utilities */
+.theme-lapis-agate {
+  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #030712 75%);
+  color: #f8fafc;
+}
+
+.theme-lapis-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.25), 0 0 15px rgba(220, 38, 38, 0.15);
+  backdrop-filter: blur(12px);
+}
+
+.theme-vivid-white {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.theme-vivid-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.theme-monochrome-bw {
+  background: #000000;
+  color: #ffffff;
+}
+
+.theme-monochrome-card {
+  background: #0a0a0a;
+  border: 1px solid #262626;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.05);
+}
+
+/* 3D Shadow effects */
+.shadow-3d-lapis {
+  box-shadow: 0 12px 0 0 #1e1b4b, 0 15px 25px rgba(126, 34, 206, 0.4);
+}
+
+.shadow-3d-agate {
+  box-shadow: 0 12px 0 0 #450a0a, 0 15px 25px rgba(220, 38, 38, 0.35);
+}
+
+.shadow-3d-white {
+  box-shadow: 0 10px 0 0 #cbd5e1, 0 12px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-3d-bw {
+  box-shadow: 0 10px 0 0 #262626, 0 12px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Animations and decorative items */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.7);
+  }
+}
+
+.glow-emerald {
+  animation: pulseGlow 3s infinite;
+}
+
+/* Glow effects for PAD meters */
+.glow-pleasure {
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.4));
+}
+.glow-arousal {
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.4));
+}
+.glow-dominance {
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4));
+}
+

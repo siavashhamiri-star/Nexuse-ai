@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "The user demographic profile and affective computing session statistics",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique user identifier authenticated via Firebase Auth" },
+        "reputationScore": { "type": "number", "description": "User trust or empathy quotient in Capable City" },
+        "walletBalance": { "type": "number", "description": "Currently owned WT tokens" },
+        "exp": { "type": "integer", "description": "Acquired experience units" },
+        "charityFund": { "type": "number", "description": "Contributed community welfare tokens" },
+        "padState": { "type": "object", "description": "Pleasure, Arousal, Dominance vectors of current session" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Profile sign up date" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last profile sync date" }
+      },
+      "required": ["userId", "reputationScore", "walletBalance", "exp", "charityFund", "padState"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chronological system or user message block in the city affective chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sender": { "type": "string", "enum": ["user", "system"] },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "detectedEmotion": { "type": "string" },
+        "rewardTokensEarned": { "type": "number" },
+        "cosmicWisdomFa": { "type": "string" }
+      },
+      "required": ["id", "sender", "text", "timestamp"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial or tokenomics ledger logs for democratic participation rewards",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "desc": { "type": "string" },
+        "tokens": { "type": "number" },
+        "group": { "type": "boolean" },
+        "time": { "type": "string" }
+      },
+      "required": ["id", "desc", "tokens", "time"]
+    },
+    "FamilySecret": {
+      "title": "FamilySecret",
+      "description": "Empathetic family secrets locked within tablet configurations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "lockType": { "type": "string", "enum": ["password", "soul_convergence"] },
+        "password": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "content", "lockType"]
+    }
+  },
+  "firestore": {
+    "user_profiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "Access point for active user statistics and overall emotional state"
+    },
+    "user_profiles/{userId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Individual chat message records"
+    },
+    "user_profiles/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Transaction logs of tokens earned"
+    },
+    "user_profiles/{userId}/family_secrets/{secretId}": {
+      "schema": "FamilySecret",
+      "description": "Encrypted or locked family secrets"
+    }
+  }
+}

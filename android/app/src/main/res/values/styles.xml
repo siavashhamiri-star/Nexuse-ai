@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.ManaEcosystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#059669</item>
+        <item name="colorPrimaryVariant">#064e3b</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:statusBarColor">#030712</item>
+        <item name="android:navigationBarColor">#030712</item>
+    </style>
+
+    <style name="Theme.ManaEcosystem.NoActionBarLaunch" parent="Theme.ManaEcosystem">
+        <item name="android:background">#030712</item>
+    </style>
+</resources>

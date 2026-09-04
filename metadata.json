@@ -1,0 +1,6 @@
+{
+  "name": "OpenMind Nexus",
+  "description": "یک شبیه‌ساز و موتور هوش مصنوعی احساس‌محور بر پایه مدل سهبعدی PAD و منطق عاطفی برای شهر توانا",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
