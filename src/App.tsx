@@ -51,7 +51,8 @@ import { SanctuarySubTabs } from "./components/SanctuarySubTabs";
 import { PrivacyVaultTab } from "./components/PrivacyVaultTab";
 import { PersianGulfCity3DTab } from "./components/PersianGulfCity3DTab";
 import { AppStoreExportTab } from "./components/AppStoreExportTab";
-import { t } from "./translations";
+import { NexuseCoreConsole } from "./components/NexuseCoreConsole";
+import { t, AppLanguage } from "./translations";
 import { Video, VideoOff, Mic, Volume2, CheckCircle2, AlertTriangle, Play, Languages, Phone, PhoneOff, Download, Headphones, VolumeX } from "lucide-react";
 
 // Import Firebase config & Firestore modules
@@ -254,7 +255,7 @@ export default function App() {
   const [firebaseStatusText, setFirebaseStatusText] = useState<string>("در انتظار اتصال به سرور ابری گوگل");
 
   // Magical Cosmic Resonance & Wisdom States
-  const [activeTab, setActiveTab] = useState<"wisdom" | "breathing" | "synth" | "aura" | "fashion" | "coexistence" | "familySecrets" | "addictionSupport" | "privacyVault" | "persianGulfCity" | "appStoreExport" | "backstage" | "creatorSanctuary" | "investorDeck" | "firebase">("wisdom");
+  const [activeTab, setActiveTab] = useState<"wisdom" | "breathing" | "synth" | "aura" | "fashion" | "coexistence" | "familySecrets" | "addictionSupport" | "privacyVault" | "persianGulfCity" | "appStoreExport" | "nexuseCore" | "backstage" | "creatorSanctuary" | "investorDeck" | "firebase">("wisdom");
   const [tabCategory, setTabCategory] = useState<"harmony" | "connection" | "creator">("harmony");
 
   // Synchronize Tab Category with Active Tab
@@ -263,7 +264,7 @@ export default function App() {
       setTabCategory("harmony");
     } else if (["coexistence", "fashion", "familySecrets", "addictionSupport", "privacyVault", "persianGulfCity"].includes(activeTab)) {
       setTabCategory("connection");
-    } else if (["creatorSanctuary", "backstage", "investorDeck", "firebase", "appStoreExport"].includes(activeTab)) {
+    } else if (["creatorSanctuary", "backstage", "investorDeck", "firebase", "appStoreExport", "nexuseCore"].includes(activeTab)) {
       setTabCategory("creator");
     }
   }, [activeTab]);
@@ -291,7 +292,7 @@ export default function App() {
   ]);
 
   // Smart Home Persona & Audio Companion States
-  const [appLanguage, setAppLanguage] = useState<"fa" | "en" | "ru" | "es" | "fr" | "ja" | "zh" | "ar">("fa");
+  const [appLanguage, setAppLanguage] = useState<AppLanguage>("fa");
   const [registeredUser, setRegisteredUser] = useState<{name: string, email: string, companion: string, exp: number, registered: boolean} | null>(() => {
     try {
       const u = localStorage.getItem("mana_registered_user");
@@ -3105,7 +3106,9 @@ Response: {
                     es: "Idioma de la aplicación configurado en Español. Síntesis de voz activada.",
                     fr: "Langue de l'application configurée en Français. Synthèse vocale activée.",
                     ja: "アプリの言語が日本語に設定されました。高忠実度の音声合成が有効になりました。",
-                    zh: "应用语言已设置为中文。高保真语音合成已激活。"
+                    zh: "应用语言已设置为中文。高保真语音合成已激活。",
+                    hi: "एप्लिकेशन भाषा को हिंदी पर सेट किया गया है। उच्च निष्ठा मुखर संश्लेषण सक्रिय।",
+                    de: "Anwendungssprache auf Deutsch eingestellt. Hochwertige Sprachsynthese aktiviert."
                   };
                   speakHomePersonaText(greetings[selectedLang]);
                 }}
@@ -3117,8 +3120,10 @@ Response: {
                 <option value="ru" className="bg-slate-900 text-slate-100">Русский 🇷🇺</option>
                 <option value="es" className="bg-slate-900 text-slate-100">Español 🇪🇸</option>
                 <option value="fr" className="bg-slate-900 text-slate-100">Français 🇫🇷</option>
-                <option value="ja" className="bg-slate-900 text-slate-100">日本語 🇯🇵</option>
+                <option value="de" className="bg-slate-900 text-slate-100">Deutsch 🇩🇪</option>
                 <option value="zh" className="bg-slate-900 text-slate-100">中文 🇨🇳</option>
+                <option value="hi" className="bg-slate-900 text-slate-100">हिन्दी 🇮🇳</option>
+                <option value="ja" className="bg-slate-900 text-slate-100">日本語 🇯🇵</option>
               </select>
             </div>
 
@@ -3191,6 +3196,17 @@ Response: {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setTabCategory("creator");
+                  setActiveTab("nexuseCore");
+                }}
+                className="text-[10px] px-3 py-1 rounded-lg bg-gradient-to-r from-purple-900/60 to-indigo-900/60 hover:from-purple-800 hover:to-indigo-800 border border-purple-500/40 text-purple-200 font-bold flex items-center gap-1.5 transition cursor-pointer shadow-sm animate-pulse"
+              >
+                <Cpu className="w-3.5 h-3.5 text-purple-300" />
+                <span>ورود به هسته اجرایی NEXUSE</span>
+              </button>
               <span className="text-[9.5px] px-2.5 py-1 rounded bg-emerald-900/30 border border-emerald-800 text-teal-300 font-bold">
                 VERSION 3.2 PRO ACTIVE
               </span>
@@ -4260,6 +4276,17 @@ Response: {
                     >
                       <Store className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
                       <span className="font-bold">مرکز انتشار در کافه‌بازار، مایکت و اپ‌استورها</span>
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("nexuseCore")}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1 whitespace-nowrap ${
+                        activeTab === "nexuseCore"
+                          ? "bg-gradient-to-r from-emerald-600 via-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-900/30 font-extrabold border border-emerald-400/30"
+                          : "text-slate-300 hover:text-slate-100 hover:bg-slate-800/50"
+                      }`}
+                    >
+                      <Cpu className="w-3.5 h-3.5 text-emerald-400 shrink-0 animate-pulse" />
+                      <span className="font-bold">هسته اجرایی NEXUSE (پایپ‌لاین PAD)</span>
                     </button>
                   </>
                 )}
@@ -8956,6 +8983,10 @@ Response: {
                 appLanguage={appLanguage}
                 speakHomePersonaText={speakHomePersonaText}
               />
+            )}
+
+            {activeTab === "nexuseCore" && (
+              <NexuseCoreConsole />
             )}
 
             {activeTab === "creatorSanctuary" && (

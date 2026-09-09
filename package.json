@@ -9,6 +9,7 @@
     "build:client": "vite build",
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
+    "build:android": "bash build-android.sh",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

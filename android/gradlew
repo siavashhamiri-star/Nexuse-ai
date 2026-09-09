@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# ==============================================================================
+# Gradle Startup Script for UN*X
+# ==============================================================================
+
+# Attempt to set APP_HOME
+APP_HOME=$(cd "$(dirname "$0")" && pwd -P)
+
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Find java
+if [ -n "$JAVA_HOME" ] ; then
+    JAVACMD="$JAVA_HOME/bin/java"
+else
+    JAVACMD="java"
+fi
+
+if ! command -v "$JAVACMD" >/dev/null 2>&1 ; then
+    echo "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH." >&2
+    echo "Please set the JAVA_HOME variable in your environment to match the location of your Java installation." >&2
+    exit 1
+fi
+
+WRAPPER_JAR="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
+
+# If gradle-wrapper.jar does not exist, download or run installed gradle
+if [ ! -r "$WRAPPER_JAR" ]; then
+    if command -v gradle >/dev/null 2>&1 ; then
+        exec gradle "$@"
+    else
+        echo "Gradle wrapper jar not found. Attempting to download or use local gradle..."
+        mkdir -p "$APP_HOME/gradle/wrapper"
+        # Download wrapper jar if curl or wget exists
+        if command -v curl >/dev/null 2>&1 ; then
+            curl -sLo "$WRAPPER_JAR" https://raw.githubusercontent.com/gradle/gradle/v8.2.1/gradle/wrapper/gradle-wrapper.jar || true
+        fi
+    fi
+fi
+
+if [ -r "$WRAPPER_JAR" ]; then
+    exec "$JAVACMD" "-Dorg.gradle.appname=gradlew" -classpath "$WRAPPER_JAR" org.gradle.wrapper.GradleWrapperMain "$@"
+elif command -v gradle >/dev/null 2>&1 ; then
+    exec gradle "$@"
+else
+    echo "Neither gradle-wrapper.jar nor system 'gradle' command was found."
+    echo "Please install Gradle (e.g. 'sdk install gradle 8.2.1' or 'brew install gradle') or install Java JDK 17+."
+    exit 1
+fi
